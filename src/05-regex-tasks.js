@@ -54,7 +54,8 @@ function getRegexForGuid() {
  *
  */
 function getRegexForPitSpot() {
-  throw new Error('Not implemented');
+  return /(pi|sp|sl)/;
+  //  throw new Error('Not implemented');
 }
 
 
