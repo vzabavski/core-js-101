@@ -53,18 +53,8 @@ function getCicleCircumference(radius) {
  *  10, 0  => 5
  *  -3, 3  => 0
  */
-function getAverage(value1, value2) {
-  let res;
-  if (value1 + value2 > Number.MAX_SAFE_INTEGER) {
-    const v1 = BigInt(value1);
-    const v2 = BigInt(value2);
-    const div = BigInt(2);
-    res = (v1 + v2) / div;
-  } else {
-    res = (value1 + value2) / 2;
-  }
-  return res;
-  //   throw new Error('Not implemented');
+function getAverage(/* value1, value2 */) {
+  throw new Error('Not implemented');
 }
 
 /**
