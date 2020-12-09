@@ -198,8 +198,15 @@ function isInsideCircle(/*  circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  for (let i = 0; i < str.length; i += 1) {
+    const l = str.charAt(i);
+    if (str.indexOf(l) === i && str.indexOf(l, i + 1) === -1) {
+      return l;
+    }
+  }
+  return null;
+  //  throw new Error('Not implemented');
 }
 
 
@@ -286,8 +293,29 @@ function reverseInteger(num) {
  *   5436468789016589 => false
  *   4916123456789012 => false
  */
-function isCreditCardNumber(/* ccn */) {
-  throw new Error('Not implemented');
+function isCreditCardNumber(ccn) {
+  let res = [];
+  const arr = String(ccn).split('');
+  if (arr.length % 2 === 0) {
+    for (let i = 0; i < arr.length; i += 1) {
+      if (i % 2 === 0) {
+        res.push((+arr[i] * 2 < 9) ? +arr[i] * 2 : +arr[i] * 2 - 9);
+      } else {
+        res.push(+arr[i]);
+      }
+    }
+  } else {
+    for (let i = 0; i < arr.length; i += 1) {
+      if (i % 2 !== 0) {
+        res.push((+arr[i] * 2 < 9) ? +arr[i] * 2 : +arr[i] * 2 - 9);
+      } else {
+        res.push(+arr[i]);
+      }
+    }
+  }
+  res = res.reduce((acc, cur) => acc + cur, 0);
+  return (res % 10 === 0);
+  //  throw new Error('Not implemented');
 }
 
 /**
@@ -331,8 +359,30 @@ function getDigitalRoot(num) {
  *   '{)' = false
  *   '{[(<{[]}>)]}' = true
  */
-function isBracketsBalanced(/* str */) {
-  throw new Error('Not implemented');
+function isBracketsBalanced(str, stack = []) {
+  let res;
+  if (str !== '') {
+    const sample = "()[]{}<>''";
+    const bracketIndex = sample.indexOf(str[0]);
+    if (stack[stack.length - 1] === bracketIndex) {
+      stack.pop();
+    } else {
+      stack.push(bracketIndex + 1);
+    }
+    if (str.length <= 1) {
+      if (stack.length === 0) {
+        res = true;
+      } else {
+        res = false;
+      }
+    } else {
+      return isBracketsBalanced(str.substring(1), stack);
+    }
+  } else {
+    return true;
+  }
+  return res;
+  //  throw new Error('Not implemented');
 }
 
 
